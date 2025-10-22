@@ -1,73 +1,186 @@
-# Welcome to your Lovable project
+# Compliance & Legal Hub
 
-## Project info
+## 🎯 Unified System - Consolidation of 3 Repositories
 
-**URL**: https://lovable.dev/projects/27f807a4-47ce-4848-8766-28269a780e45
+This repository is the **unified Compliance & Legal Hub** that consolidates three separate systems into one comprehensive solution:
 
-## How can I edit this code?
+- ✅ ftdcad/legal-and-compliance-3
+- ✅ ftdcad/compliance-legal-2 (now archived)
+- ✅ ftdcad/ai-state-compliance (now archived)
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## 🚀 What's Inside
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/27f807a4-47ce-4848-8766-28269a780e45) and start prompting.
+### Backend Infrastructure
+- **MongoDB/NoSQL Database** (Supabase removed)
+- **Express.js API** with full CRUD operations
+- **JWT Authentication** middleware
+- **8 MongoDB Models:**
+  - ComplianceRule
+  - ComplianceTemplate
+  - ComplianceAlert
+  - ComplianceState
+  - ComplianceChatHistory
+  - License
+  - Bond
+  - User
 
-Changes made via Lovable will be committed automatically to this repo.
+- **4 API Routes:**
+  - `/api/compliance` - Rules, templates, alerts, states, chat, stats
+  - `/api/licenses` - Employee license tracking
+  - `/api/bonds` - Employee bond tracking
+  - `/api/auth` - JWT authentication
 
-**Use your preferred IDE**
+### Frontend - ComplianceLegalHub Component
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+**Employee Compliance View:**
+- Track adjuster licenses by state and employee
+- Track bonds by state and employee
+- Expiration status tracking with color-coding:
+  - 🟢 Active (90+ days remaining)
+  - 🟡 Expiring Soon (≤30 days)
+  - 🔴 Expired
+- Group licenses/bonds by employee
+- State filtering dropdown
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+**Additional Features:**
+- Company Compliance View (corporate tracking)
+- Dashboard with compliance metrics
+- State browsing functionality
+- Search rules interface
+- Compare states feature
+- Coastal Admin panel for managing rules, templates, and settings
 
-Follow these steps:
+**UI/UX:**
+- Dark mode compatible
+- Radix UI components
+- Color-coded expiration status indicators
+- State filtering dropdowns
+- Responsive design
+
+---
+
+## 📦 Tech Stack
+
+- **Frontend:** React + TypeScript + Vite
+- **Backend:** Node.js + Express + MongoDB
+- **UI Library:** shadcn-ui + Radix UI
+- **Styling:** Tailwind CSS
+- **Authentication:** JWT
+- **Database:** MongoDB (NoSQL)
+
+---
+
+## 🛠️ Getting Started
+
+### Prerequisites
+- Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- MongoDB running locally or connection to MongoDB Atlas
+
+### Installation
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Clone the repository
+git clone https://github.com/Coastal-Claims-Services/compliance-and-legal-hub.git
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Navigate to the project directory
+cd compliance-and-legal-hub
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install frontend dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+# Install backend dependencies
+cd server
+npm install
+cd ..
 ```
 
-**Edit a file directly in GitHub**
+### Environment Variables
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Create a `.env` file in the `server/` directory:
 
-**Use GitHub Codespaces**
+```env
+PORT=4000
+MONGO_URI=mongodb://localhost:27017/legal-compliance-3
+JWT_SECRET=your_jwt_secret_key_here
+JWT_EXPIRES_IN=7d
+NODE_ENV=development
+FRONTEND_URL=http://localhost:5173
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Running the Application
 
-## What technologies are used for this project?
+```sh
+# Run both frontend and backend concurrently
+npm run dev:fullstack
 
-This project is built with:
+# Or run them separately:
+# Terminal 1 - Frontend (port 5173)
+npm run dev
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+# Terminal 2 - Backend (port 4000)
+cd server && npm run dev
+```
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/27f807a4-47ce-4848-8766-28269a780e45) and click on Share -> Publish.
+## 📝 Integration with Employee Portal
 
-## Can I connect a custom domain to my Lovable project?
+See [INTEGRATION_REQUEST.md](./INTEGRATION_REQUEST.md) for detailed instructions on integrating this hub into the CCS Employee Portal.
 
-Yes, you can!
+**Quick Summary for Talha:**
+1. Copy `src/pages/ComplianceLegalHub.tsx` to employee portal
+2. Add "Compliance & Legal Hub" tab to navigation
+3. Add route in AdminRouter
+4. Ensure backend routes are registered
+5. Test the integration
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+---
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 📂 Project Structure
+
+```
+compliance-and-legal-hub/
+├── server/
+│   ├── src/
+│   │   ├── config/          # Database & AWS config
+│   │   ├── middleware/      # JWT auth middleware
+│   │   ├── models/          # MongoDB models (8 total)
+│   │   ├── routes/          # API routes (4 total)
+│   │   └── index.ts         # Main server file
+│   ├── package.json
+│   └── tsconfig.json
+├── src/
+│   ├── pages/
+│   │   └── ComplianceLegalHub.tsx  # Main hub component
+│   ├── components/
+│   └── ...
+├── package.json
+├── vite.config.ts
+└── README.md
+```
+
+---
+
+## 🔗 Related Repositories
+
+**Archived Repositories (DO NOT USE):**
+- [compliance-legal-2](https://github.com/Coastal-Claims-Services/compliance-legal-2) - Archived
+- [ai-state-compliance](https://github.com/ftdcad/ai-state-compliance) - Archived
+
+---
+
+## 📄 License
+
+Private - Coastal Claims Services
+
+---
+
+## 🤝 Contributing
+
+For questions or issues, please contact the development team.
+
+---
+
+*Last Updated: October 2025*
