@@ -183,4 +183,46 @@ For questions or issues, please contact the development team.
 
 ---
 
-*Last Updated: October 2025*
+## 🤖 AI Intelligence System
+
+### Core Instructions - December 1, 2025
+
+The Compliance & Legal Hub now includes **AI-powered compliance intelligence** with strict accuracy and verification standards.
+
+**Key Features:**
+- **DOI-First Approach:** All compliance information sourced from official Department of Insurance sources
+- **Mandatory Source Attribution:** Every statement includes statute citations, URLs, and verification dates
+- **Confidence Scoring:** HIGH/MEDIUM/LOW confidence levels for all data
+- **50 States + Territories:** Coverage includes Puerto Rico and US Virgin Islands
+
+**Documentation:**
+- [AI Core Instructions](./docs/AI_CORE_INSTRUCTIONS.md) - Comprehensive AI system guidelines
+- State-by-state compliance intelligence
+- Licensing requirements and market analysis
+- Fee regulations and AOB laws
+
+**Core Principles:**
+
+1. **Department of Insurance as Primary Source**
+   - ALWAYS reference official state DOI sources
+   - NEVER rely solely on general AI knowledge
+   - VERIFY all compliance statements with current statutes
+
+2. **Source Attribution Requirements**
+   - Cite specific statutes and regulation numbers
+   - Include direct URLs to official sources
+   - Provide verification dates and confidence levels
+   - Warn when information may be outdated
+
+**Example State DOI Sources:**
+- Florida: [Florida DFS](https://www.myfloridacfo.com/division/agents)
+- Texas: [Texas TDI](https://www.tdi.texas.gov/)
+- California: [California CDI](https://www.insurance.ca.gov/)
+- Louisiana: [Louisiana LDI](https://www.ldi.la.gov/)
+- Puerto Rico: [OCS](https://ocs.pr.gov/)
+
+**For detailed AI system documentation, see:** [docs/AI_CORE_INSTRUCTIONS.md](./docs/AI_CORE_INSTRUCTIONS.md)
+
+---
+
+*Last Updated: December 1, 2025*
