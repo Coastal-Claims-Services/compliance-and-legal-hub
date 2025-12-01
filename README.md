@@ -197,9 +197,11 @@ The Compliance & Legal Hub now includes **AI-powered compliance intelligence** w
 
 **Documentation:**
 - [AI Core Instructions](./docs/AI_CORE_INSTRUCTIONS.md) - Comprehensive AI system guidelines
+- [State Compliance Rules](./docs/STATE_COMPLIANCE_RULES.json) - Programmatic enforcement logic
 - State-by-state compliance intelligence
 - Licensing requirements and market analysis
 - Fee regulations and AOB laws
+- Critical state restrictions and violations
 
 **Core Principles:**
 
@@ -221,7 +223,20 @@ The Compliance & Legal Hub now includes **AI-powered compliance intelligence** w
 - Louisiana: [Louisiana LDI](https://www.ldi.la.gov/)
 - Puerto Rico: [OCS](https://ocs.pr.gov/)
 
-**For detailed AI system documentation, see:** [docs/AI_CORE_INSTRUCTIONS.md](./docs/AI_CORE_INSTRUCTIONS.md)
+**Critical State Restrictions:**
+- 🔴 **Alabama:** Public adjusting is ILLEGAL (UPL)
+- 🔴 **Kansas:** Residential PA is ILLEGAL (commercial only)
+- 🔴 **Louisiana:** Contingency fees are ILLEGAL (hourly/flat only)
+- 🟡 **Florida:** 10% fee cap (no exceptions)
+- 🟡 **Illinois:** 10% fee cap
+- 🟡 **Tennessee:** 10% fee cap
+- ⚠️ **Texas:** 72-hour post-disaster solicitation ban
+- ⚠️ **North Carolina:** 48-hour hurricane solicitation ban
+- 🌎 **Puerto Rico:** Spanish contracts required
+
+**For detailed AI system documentation, see:**
+- [docs/AI_CORE_INSTRUCTIONS.md](./docs/AI_CORE_INSTRUCTIONS.md)
+- [docs/STATE_COMPLIANCE_RULES.json](./docs/STATE_COMPLIANCE_RULES.json)
 
 ---
 
