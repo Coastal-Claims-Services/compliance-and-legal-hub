@@ -1,0 +1,328 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "State Compliance Rules - Enforcement Logic",
+  "description": "Programmatic enforcement rules for state-specific public adjuster compliance requirements",
+  "version": "1.0.0",
+  "lastUpdated": "2025-12-01",
+  "rules": [
+    {
+      "stateCode": "AL",
+      "stateName": "Alabama",
+      "category": "LICENSE_RESTRICTION",
+      "description": "Public Adjusting is Illegal (Unauthorized Practice of Law)",
+      "isActive": true,
+      "logicType": "FORBIDDEN_ACTION",
+      "thresholdValue": ["CONTRACT", "SOLICITATION", "REPRESENTATION"],
+      "severity": "BLOCK_ACTION",
+      "errorMessage": "CRITICAL: Public Adjusting is illegal in Alabama. This constitutes Unauthorized Practice of Law (UPL). Refer client to Attorney.",
+      "legalBasis": {
+        "statute": "Alabama Code § 34-3-6",
+        "regulation": "Alabama Department of Insurance",
+        "url": "https://www.aldoi.gov/",
+        "notes": "Alabama does not license public adjusters. PA activities are considered UPL."
+      },
+      "consequences": [
+        "Criminal prosecution for UPL",
+        "Fines and penalties",
+        "Contract voidability",
+        "Professional liability exposure"
+      ],
+      "verifiedDate": "2025-12-01",
+      "confidenceLevel": "HIGH"
+    },
+    {
+      "stateCode": "KS",
+      "stateName": "Kansas",
+      "category": "LICENSE_RESTRICTION",
+      "description": "Residential Public Adjusting is Illegal",
+      "isActive": true,
+      "logicType": "FORBIDDEN_KEYWORD",
+      "thresholdValue": ["RESIDENTIAL", "HOMEOWNER", "PERSONAL_PROPERTY", "DWELLING"],
+      "severity": "BLOCK_ACTION",
+      "errorMessage": "VIOLATION: Kansas only allows Commercial Public Adjusting. Residential claims are prohibited.",
+      "legalBasis": {
+        "statute": "K.S.A. 40-2,162",
+        "regulation": "Kansas Insurance Department",
+        "url": "https://insurance.kansas.gov/",
+        "notes": "Kansas restricts PA licensing to commercial property only. Residential PA work is prohibited."
+      },
+      "allowedTypes": ["COMMERCIAL"],
+      "prohibitedTypes": ["RESIDENTIAL", "PERSONAL_LINES"],
+      "consequences": [
+        "License revocation",
+        "Fines up to $10,000",
+        "Contract voidability",
+        "Criminal penalties"
+      ],
+      "verifiedDate": "2025-12-01",
+      "confidenceLevel": "HIGH"
+    },
+    {
+      "stateCode": "LA",
+      "stateName": "Louisiana",
+      "category": "FEE_STRUCTURE",
+      "description": "Contingency Fees are Illegal",
+      "isActive": true,
+      "logicType": "FORBIDDEN_FEE_TYPE",
+      "thresholdValue": ["PERCENTAGE", "CONTINGENCY", "SUCCESS_FEE"],
+      "severity": "BLOCK_ACTION",
+      "errorMessage": "VIOLATION: Louisiana requires Hourly or Flat Fee billing only. Contingency/percentage fees are prohibited.",
+      "legalBasis": {
+        "statute": "La. R.S. 37:212",
+        "regulation": "Louisiana Department of Insurance",
+        "url": "https://www.ldi.la.gov/",
+        "notes": "Louisiana prohibits percentage-based fees. Only hourly rates or flat fees permitted."
+      },
+      "allowedFeeTypes": ["HOURLY", "FLAT_FEE"],
+      "prohibitedFeeTypes": ["PERCENTAGE", "CONTINGENCY", "COMMISSION"],
+      "consequences": [
+        "License suspension or revocation",
+        "Fee forfeiture",
+        "Fines and penalties",
+        "Criminal prosecution possible"
+      ],
+      "verifiedDate": "2025-12-01",
+      "confidenceLevel": "HIGH"
+    },
+    {
+      "stateCode": "FL",
+      "stateName": "Florida",
+      "category": "FEE_CAP",
+      "description": "10% Fee Cap (Post-2022 Reform)",
+      "isActive": true,
+      "logicType": "DYNAMIC_CAP",
+      "thresholdValue": {
+        "standard": 0.10,
+        "emergency": 0.10,
+        "preContract": 0.10,
+        "postContract": 0.10
+      },
+      "severity": "BLOCK_ACTION",
+      "errorMessage": "VIOLATION: Fee exceeds Florida's 10% statutory cap (F.S. 626.854).",
+      "legalBasis": {
+        "statute": "Florida Statute 626.854",
+        "effectiveDate": "2022-12-16",
+        "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0626/0626.html",
+        "notes": "Florida implemented 10% cap for all PA contracts effective Dec 16, 2022. No exceptions for emergency or pre-loss contracts."
+      },
+      "applicableToAll": true,
+      "noExceptions": true,
+      "consequences": [
+        "License discipline",
+        "Fee forfeiture (must refund excess)",
+        "Administrative fines up to $5,000 per violation",
+        "Criminal penalties for willful violations"
+      ],
+      "verifiedDate": "2025-12-01",
+      "confidenceLevel": "HIGH"
+    },
+    {
+      "stateCode": "IL",
+      "stateName": "Illinois",
+      "category": "FEE_CAP",
+      "description": "Strict 10% Fee Cap",
+      "isActive": true,
+      "logicType": "MAX_PERCENTAGE",
+      "thresholdValue": 0.10,
+      "severity": "BLOCK_ACTION",
+      "errorMessage": "VIOLATION: Illinois limits public adjuster fees to 10% of claim recovery.",
+      "legalBasis": {
+        "statute": "215 ILCS 5/1567",
+        "regulation": "Illinois Department of Insurance",
+        "url": "https://insurance.illinois.gov/",
+        "notes": "Illinois caps PA fees at 10% of total claim settlement."
+      },
+      "applicableToAll": true,
+      "consequences": [
+        "License revocation",
+        "Civil penalties",
+        "Fee disgorgement",
+        "Unfair trade practice violation"
+      ],
+      "verifiedDate": "2025-12-01",
+      "confidenceLevel": "HIGH"
+    },
+    {
+      "stateCode": "TN",
+      "stateName": "Tennessee",
+      "category": "FEE_CAP",
+      "description": "Strict 10% Fee Cap",
+      "isActive": true,
+      "logicType": "MAX_PERCENTAGE",
+      "thresholdValue": 0.10,
+      "severity": "BLOCK_ACTION",
+      "errorMessage": "VIOLATION: Tennessee limits public adjuster fees to 10% of claim recovery.",
+      "legalBasis": {
+        "statute": "TCA § 56-2-702",
+        "regulation": "Tennessee Department of Commerce & Insurance",
+        "url": "https://www.tn.gov/commerce/insurance.html",
+        "notes": "Tennessee caps PA fees at 10% of settlement amount."
+      },
+      "applicableToAll": true,
+      "consequences": [
+        "License suspension/revocation",
+        "Administrative fines",
+        "Fee forfeiture",
+        "Class B misdemeanor charges possible"
+      ],
+      "verifiedDate": "2025-12-01",
+      "confidenceLevel": "HIGH"
+    },
+    {
+      "stateCode": "TX",
+      "stateName": "Texas",
+      "category": "CATASTROPHE_RESTRICTION",
+      "description": "72-Hour Solicitation Ban Post-Disaster",
+      "isActive": true,
+      "logicType": "TIME_BASED_RESTRICTION",
+      "thresholdValue": {
+        "restrictionHours": 72,
+        "triggerEvent": "GOVERNOR_DISASTER_DECLARATION"
+      },
+      "severity": "WARN_BLOCK",
+      "errorMessage": "WARNING: Texas prohibits PA solicitation for 72 hours after disaster declaration (TIC § 4102.051).",
+      "legalBasis": {
+        "statute": "Texas Insurance Code § 4102.051",
+        "regulation": "Texas Department of Insurance",
+        "url": "https://www.tdi.texas.gov/",
+        "notes": "Cannot solicit in disaster area for 72 hours after Governor's disaster declaration."
+      },
+      "consequences": [
+        "License suspension up to 1 year",
+        "Administrative penalties up to $25,000",
+        "Contract voidability",
+        "Criminal prosecution possible"
+      ],
+      "verifiedDate": "2025-12-01",
+      "confidenceLevel": "HIGH"
+    },
+    {
+      "stateCode": "NC",
+      "stateName": "North Carolina",
+      "category": "CATASTROPHE_RESTRICTION",
+      "description": "Prohibited Solicitation Post-Hurricane",
+      "isActive": true,
+      "logicType": "EVENT_BASED_RESTRICTION",
+      "thresholdValue": {
+        "restrictionHours": 48,
+        "triggerEvent": "HURRICANE_WARNING"
+      },
+      "severity": "BLOCK_ACTION",
+      "errorMessage": "VIOLATION: NC prohibits PA solicitation for 48 hours after hurricane landfall.",
+      "legalBasis": {
+        "statute": "N.C.G.S. § 58-33A-15",
+        "regulation": "NC Department of Insurance",
+        "url": "https://www.ncdoi.gov/",
+        "notes": "Post-hurricane solicitation restrictions. Cannot solicit within declared disaster area."
+      },
+      "consequences": [
+        "License revocation",
+        "Criminal misdemeanor charges",
+        "Fines up to $5,000",
+        "Prohibited from operating in NC"
+      ],
+      "verifiedDate": "2025-12-01",
+      "confidenceLevel": "HIGH"
+    },
+    {
+      "stateCode": "PR",
+      "stateName": "Puerto Rico",
+      "category": "CONTRACT_REQUIREMENT",
+      "description": "Contracts Must Be in Spanish",
+      "isActive": true,
+      "logicType": "LANGUAGE_REQUIREMENT",
+      "thresholdValue": ["SPANISH_REQUIRED"],
+      "severity": "WARN_BLOCK",
+      "errorMessage": "REQUIREMENT: Puerto Rico law requires all consumer contracts to be in Spanish.",
+      "legalBasis": {
+        "statute": "Puerto Rico Consumer Affairs Act",
+        "regulation": "Oficina del Comisionado de Seguros (OCS)",
+        "url": "https://ocs.pr.gov/",
+        "notes": "All consumer-facing contracts must be available in Spanish. English-only contracts are voidable."
+      },
+      "consequences": [
+        "Contract voidability",
+        "Consumer protection violations",
+        "OCS sanctions",
+        "Fee forfeiture"
+      ],
+      "verifiedDate": "2025-12-01",
+      "confidenceLevel": "HIGH"
+    },
+    {
+      "stateCode": "NY",
+      "stateName": "New York",
+      "category": "SCOPE_OF_PRACTICE",
+      "description": "Cannot Provide Legal Advice",
+      "isActive": true,
+      "logicType": "FORBIDDEN_SERVICE",
+      "thresholdValue": ["LEGAL_ADVICE", "LITIGATION_STRATEGY", "SETTLEMENT_NEGOTIATION_LEGAL"],
+      "severity": "WARN_BLOCK",
+      "errorMessage": "WARNING: New York PAs cannot provide legal advice. UPL violations may result in criminal prosecution.",
+      "legalBasis": {
+        "statute": "NY Judiciary Law § 478",
+        "regulation": "NY Department of Financial Services",
+        "url": "https://www.dfs.ny.gov/",
+        "notes": "PAs must avoid unauthorized practice of law. Cannot advise on litigation strategy, legal rights, or settlement negotiations involving legal interpretation."
+      },
+      "consequences": [
+        "Criminal prosecution for UPL",
+        "License revocation",
+        "Professional liability",
+        "Injunctions"
+      ],
+      "verifiedDate": "2025-12-01",
+      "confidenceLevel": "HIGH"
+    }
+  ],
+  "ruleCategories": {
+    "LICENSE_RESTRICTION": "States where PA activities are restricted or prohibited",
+    "FEE_CAP": "States with statutory maximum fee limits",
+    "FEE_STRUCTURE": "States with specific fee type requirements",
+    "CATASTROPHE_RESTRICTION": "States with post-disaster solicitation bans",
+    "CONTRACT_REQUIREMENT": "States with specific contract format requirements",
+    "SCOPE_OF_PRACTICE": "States with UPL and scope limitations"
+  },
+  "logicTypes": {
+    "FORBIDDEN_ACTION": "Action is completely prohibited (e.g., PA in AL)",
+    "FORBIDDEN_KEYWORD": "Specific keywords trigger violations (e.g., residential in KS)",
+    "FORBIDDEN_FEE_TYPE": "Certain fee structures are illegal (e.g., percentage in LA)",
+    "MAX_PERCENTAGE": "Fees cannot exceed percentage threshold",
+    "DYNAMIC_CAP": "Fee caps vary by circumstances (standard vs emergency)",
+    "TIME_BASED_RESTRICTION": "Restrictions based on time after event",
+    "EVENT_BASED_RESTRICTION": "Restrictions triggered by specific events",
+    "LANGUAGE_REQUIREMENT": "Contracts must be in specific language",
+    "FORBIDDEN_SERVICE": "Certain services are outside scope of practice"
+  },
+  "severityLevels": {
+    "BLOCK_ACTION": "Prevent action completely - violation is illegal",
+    "WARN_BLOCK": "Warn user strongly but allow override with acknowledgment",
+    "WARN_CONTINUE": "Display warning but allow continuation",
+    "INFO_ONLY": "Informational notice only"
+  },
+  "enforcementProtocol": {
+    "BLOCK_ACTION": [
+      "Display critical error message",
+      "Prevent contract creation/submission",
+      "Log violation attempt",
+      "Require supervisor override (if applicable)"
+    ],
+    "WARN_BLOCK": [
+      "Display warning dialog",
+      "Require user acknowledgment",
+      "Document user acceptance of risk",
+      "Escalate to compliance officer"
+    ],
+    "WARN_CONTINUE": [
+      "Show warning banner",
+      "Allow user to proceed",
+      "Log warning for audit trail"
+    ]
+  },
+  "integrationNotes": {
+    "frontend": "Use these rules to validate contracts before submission",
+    "backend": "Enforce rules at API level to prevent circumvention",
+    "ai": "AI assistant must reference these rules when advising on state compliance",
+    "audit": "All rule violations/warnings must be logged for compliance audits"
+  }
+}
