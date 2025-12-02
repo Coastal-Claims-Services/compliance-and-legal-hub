@@ -1,5 +1,33 @@
 # Compliance & Legal Hub
 
+## 📢 Latest Updates - December 1, 2025
+
+### 🤖 AI Compliance Intelligence System Added
+
+**What's New:**
+- State-specific AI enforcement engine with 🔴 BLOCK_ACTION for illegal activities (AL, KS, LA)
+- Programmatic fee cap validation (FL 10%, TX 10%, TN 10%, IL 10%, etc.)
+- State-specific RAG (Retrieval-Augmented Generation) architecture designed
+- DOI-first approach: All compliance data sourced from official Department of Insurance
+- Mandatory source attribution with statute citations and verification dates
+
+**New Files (Backend):**
+- `server/src/models/EnforcementRule.ts` - MongoDB model for enforcement rules
+- `server/src/utils/ComplianceEngine.ts` - Validation engine with state + DEFAULT_GREEN query logic
+
+**New Documentation:**
+- `docs/AI_CORE_INSTRUCTIONS.md` - Complete AI system guidelines (DOI sources, source attribution)
+- `docs/STATE_COMPLIANCE_RULES.json` - Enforcement rules database (color-coded zones)
+- `docs/STATE_RAG_ARCHITECTURE.md` - State-isolated RAG design for 50 states + territories
+
+**Action Items for Talha:**
+1. Review `ComplianceEngine.ts` - implements contract validation API
+2. Review `EnforcementRule.ts` - MongoDB schema for state rules
+3. Consider frontend integration points (contract validation, fee calculator, state selection warnings)
+4. Review STATE_RAG_ARCHITECTURE.md for state-specific AI assistant implementation plan
+
+---
+
 ## 🎯 Unified System - Consolidation of 3 Repositories
 
 This repository is the **unified Compliance & Legal Hub** that consolidates three separate systems into one comprehensive solution:
@@ -16,21 +44,25 @@ This repository is the **unified Compliance & Legal Hub** that consolidates thre
 - **MongoDB/NoSQL Database** (Supabase removed)
 - **Express.js API** with full CRUD operations
 - **JWT Authentication** middleware
-- **8 MongoDB Models:**
-  - ComplianceRule
-  - ComplianceTemplate
-  - ComplianceAlert
-  - ComplianceState
-  - ComplianceChatHistory
-  - License
-  - Bond
-  - User
+- **9 MongoDB Models:**
+  - ComplianceRule - General compliance rules and regulations
+  - ComplianceTemplate - Compliance document templates
+  - ComplianceAlert - Compliance alerts and notifications
+  - ComplianceState - State-specific compliance data
+  - ComplianceChatHistory - AI chat history tracking
+  - License - Employee license tracking
+  - Bond - Employee bond tracking
+  - User - User authentication and profiles
+  - **EnforcementRule** *(NEW)* - Programmatic enforcement rules (BLOCK_ACTION, fee caps, etc.)
 
 - **4 API Routes:**
   - `/api/compliance` - Rules, templates, alerts, states, chat, stats
   - `/api/licenses` - Employee license tracking
   - `/api/bonds` - Employee bond tracking
   - `/api/auth` - JWT authentication
+
+- **New Utility:**
+  - **ComplianceEngine** - Contract validation, fee cap enforcement, state legality checks
 
 ### Frontend - ComplianceLegalHub Component
 
